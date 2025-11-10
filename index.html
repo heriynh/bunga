@@ -271,6 +271,9 @@
     e.preventDefault();
     const data = {
       jenis: "Pencabutan",
+      nama: document.getElementById("nama").value,
+      nip: document.getElementById("nip").value,
+      nik: document.getElementById("nik").value,
       alasan: document.getElementById("alasan").value
     };
     sendToSheet(data);
@@ -288,4 +291,5 @@
 </script>
 </body>
 </html>
+
 
