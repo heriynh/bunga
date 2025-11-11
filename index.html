@@ -261,8 +261,9 @@
     e.preventDefault();
     const data = {
       jenis: "Perpanjangan",
-      tanggal: document.getElementById("tgl-exp").value,
-      dokumen: document.getElementById("dok").value
+      nama: document.getElementById("nama").value,
+      nip: document.getElementById("nip").value,
+      nik: document.getElementById("nik").value
     };
     sendToSheet(data);
     e.target.reset();
@@ -292,6 +293,7 @@
 </script>
 </body>
 </html>
+
 
 
 
