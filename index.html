@@ -163,7 +163,7 @@
           <h2 style="color:var(--panel)">Form Registrasi</h2>
           <p class="info">MOHON ISI IDENTITAS DIRI DENGAN BENAR</p>
           <form id="form-registrasi">
-            <label>Nama Lengkap</label><input id="nama" required>
+            <label>Nama</label><input id="nama" required>
             <label>NIP</label><input id="nip" required>
             <label>NIK</label><input id="nik" required>
             <label>Nomor Telepon</label><input id="telepon" type="tel" required>
@@ -176,8 +176,9 @@
         <div id="perpanjangan" class="tabpanel" style="display:none">
           <h2 style="color:var(--panel)">Form Perpanjangan</h2>
           <form id="form-perpanjangan">
-            <label>Tanggal Perpanjangan</label><input id="tgl-exp" type="date" required>
-            <label>NIK</label><input id="dok" placeholder="NOMOR NIK">
+            <label>Nama</label><input id="nama" required>
+            <label>NIP</label><input id="nip" required>
+            <label>NIK</label><input id="nik" required>
             <button class="btn btn-primary" type="submit">Ajukan Perpanjangan</button>
           </form>
         </div>
@@ -186,7 +187,7 @@
         <div id="pencabutan" class="tabpanel" style="display:none">
           <h2 style="color:var(--panel)">Form Pencabutan</h2>
           <form id="form-pencabutan">
-            <label>Nama Lengkap</label><input id="nama" required>
+            <label>Nama</label><input id="nama" required>
             <label>NIP</label><input id="nip" required>
             <label>NIK</label><input id="nik" required>
             <label>Alasan Pencabutan</label><textarea id="alasan" required></textarea>
@@ -209,7 +210,7 @@
 </div>
 
 <script>
-  const SHEET_URL = "https://script.google.com/macros/s/AKfycby4aJPJ9Ok9AIJ2rk_NjXMv1h3nqUK5TpnLdwAxYTrJDIcTtAxULR_NpZ6_z9ZXV9za/exec";
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzgseWmoZv_qbQuI-0fV6vWSwdMUTqsL9qnjeN7KF2kG8nsZCEVcmghMY1P4G_ZovIJ/exec";
 
   async function sendToSheet(data) {
     try {
@@ -219,7 +220,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       });
-      alert("✅ Data berhasil dikirim ke Google Spreadsheet!");
+      alert("✅ Data berhasil dikirim!");
     } catch (err) {
       alert("❌ Gagal mengirim data!");
       console.error(err);
@@ -271,6 +272,9 @@
     e.preventDefault();
     const data = {
       jenis: "Pencabutan",
+      nama: document.getElementById("nama").value,
+      nip: document.getElementById("nip").value,
+      nik: document.getElementById("nik").value,
       alasan: document.getElementById("alasan").value
     };
     sendToSheet(data);
@@ -288,3 +292,11 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
