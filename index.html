@@ -163,7 +163,7 @@
           <h2 style="color:var(--panel)">Form Registrasi</h2>
           <p class="info">MOHON ISI IDENTITAS DIRI DENGAN BENAR</p>
           <form id="form-registrasi">
-            <label>Nama</label><input id="nama" required>
+            <label>Nama Lengkap</label><input id="nama" required>
             <label>NIP</label><input id="nip" required>
             <label>NIK</label><input id="nik" required>
             <label>Nomor Telepon</label><input id="telepon" type="tel" required>
@@ -176,9 +176,8 @@
         <div id="perpanjangan" class="tabpanel" style="display:none">
           <h2 style="color:var(--panel)">Form Perpanjangan</h2>
           <form id="form-perpanjangan">
-            <label>Nama</label><input id="nama" required>
-            <label>NIP</label><input id="nip" required>
-            <label>NIK</label><input id="nik" required>
+            <label>Tanggal Perpanjangan</label><input id="tgl-exp" type="date" required>
+            <label>NIK</label><input id="dok" placeholder="NOMOR NIK">
             <button class="btn btn-primary" type="submit">Ajukan Perpanjangan</button>
           </form>
         </div>
@@ -187,7 +186,7 @@
         <div id="pencabutan" class="tabpanel" style="display:none">
           <h2 style="color:var(--panel)">Form Pencabutan</h2>
           <form id="form-pencabutan">
-            <label>Nama</label><input id="nama" required>
+            <label>Nama Lengkap</label><input id="nama" required>
             <label>NIP</label><input id="nip" required>
             <label>NIK</label><input id="nik" required>
             <label>Alasan Pencabutan</label><textarea id="alasan" required></textarea>
@@ -210,7 +209,7 @@
 </div>
 
 <script>
-  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzbZCmfpgLXRZSby8IGM2hCzixel3m4A_rITLqubZl7k3CqVE8JnqbccTIHPYLJgY6X/exec";
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycby4aJPJ9Ok9AIJ2rk_NjXMv1h3nqUK5TpnLdwAxYTrJDIcTtAxULR_NpZ6_z9ZXV9za/exec";
 
   async function sendToSheet(data) {
     try {
@@ -220,7 +219,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       });
-      alert("✅ Data berhasil dikirim!");
+      alert("✅ Data berhasil dikirim ke Google Spreadsheet!");
     } catch (err) {
       alert("❌ Gagal mengirim data!");
       console.error(err);
@@ -261,10 +260,8 @@
     e.preventDefault();
     const data = {
       jenis: "Perpanjangan",
-      nama: document.getElementById("nama").value,
-      nip: document.getElementById("nip").value,
-      nik: document.getElementById("nik").value,
-      dokumen: document.getElementById("dok").value,
+      tanggal: document.getElementById("tgl-exp").value,
+      dokumen: document.getElementById("dok").value
     };
     sendToSheet(data);
     e.target.reset();
@@ -274,10 +271,7 @@
     e.preventDefault();
     const data = {
       jenis: "Pencabutan",
-      nama: document.getElementById("nama").value,
-      nip: document.getElementById("nip").value,
-      nik: document.getElementById("nik").value,
-      alasan: document.getElementById("alasan").value,
+      alasan: document.getElementById("alasan").value
     };
     sendToSheet(data);
     e.target.reset();
@@ -294,12 +288,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
