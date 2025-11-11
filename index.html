@@ -261,8 +261,10 @@
     e.preventDefault();
     const data = {
       jenis: "Perpanjangan",
-      tanggal: document.getElementById("tgl-exp").value,
-      dokumen: document.getElementById("dok").value
+      nama: document.getElementById("nama").value,
+      nip: document.getElementById("nip").value,
+      nik: document.getElementById("nik").value,
+      dokumen: document.getElementById("dok").value,
     };
     sendToSheet(data);
     e.target.reset();
@@ -275,7 +277,7 @@
       nama: document.getElementById("nama").value,
       nip: document.getElementById("nip").value,
       nik: document.getElementById("nik").value,
-      alasan: document.getElementById("alasan").value
+      alasan: document.getElementById("alasan").value,
     };
     sendToSheet(data);
     e.target.reset();
@@ -292,6 +294,7 @@
 </script>
 </body>
 </html>
+
 
 
 
