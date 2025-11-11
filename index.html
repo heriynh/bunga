@@ -1,300 +1,361 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SIPAMASE - SISTEM PELAYANAN MANDIRI SERTIFIKAT ELEKTRONIK</title>
-  <style>
-    :root {
-      --bg:#0b0b0c;
-      --panel:#ffffff;
-      --muted:#d6d9de;
-      --accent:#0b66ff;
-      --accent-2:#0b4bd6;
-      --radius:12px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SIPAMASE - SISTEM PELAYANAN MANDIRI SERTIFIKAT ELEKTRONIK</title>
+  <style>
+    :root {
+      --bg:#0b0b0c;
+      --panel:#ffffff;
+      --muted:#d6d9de;
+      --accent:#0b66ff;
+      --accent-2:#0b4bd6;
+      --radius:12px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    * { box-sizing:border-box }
+    html, body {
+      height:100%; margin:0;
+      background:linear-gradient(180deg,var(--bg),#071022);
+      color:var(--muted);
+    }
+    .container {
+      max-width:980px;
+      margin:36px auto;
+      padding:28px;
+    }
+    header {
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-bottom:20px;
+    }
+    .logo {
+      width:64px; height:64px;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(11,102,255,0.18);
+      border:2px solid rgba(11,102,255,0.3);
+    }
+    .logo img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:12px;
+    }
+    h1 { margin:0; font-size:20px; color:var(--panel); font-weight:600 }
+    p.lead { margin:0; color:var(--muted); opacity:0.9 }
+    .card {
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    nav.topnav {
+      display:flex;
+      gap:10px;
+      margin-top:18px;
+    }
+    .tab {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    .tab.active {
+      background:linear-gradient(90deg, rgba(11,102,255,0.12), rgba(11,75,214,0.08));
+      border-color:rgba(11,102,255,0.38);
+      color:var(--panel);
+      box-shadow:0 6px 24px rgba(11,102,255,0.08);
+    }
+    main {
+      display:grid;
+      grid-template-columns:1fr 360px;
+      gap:18px;
+      margin-top:18px;
+    }
+    form {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    label {
+      font-size:13px;
+      color:var(--muted);
+    }
+    input, select, textarea {
+      padding:10px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:rgba(255,255,255,0.02);
+      color:var(--panel);
+      outline:none;
+    }
+    textarea {
+      min-height:100px;
+      resize:vertical;
+    }
+    .btn {
+      padding:10px 14px;
+      border-radius:10px;
+      border:none;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .btn-primary {
+      background:var(--accent);
+      color:white;
+    }
+    .info {
+      font-size:13px;
+      color:var(--muted);
+      padding:10px;
+      border-radius:8px;
+      background:rgba(11,102,255,0.04);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .info a {
+      color:var(--accent);
+      font-weight:700;
+      text-decoration:none;
+    }
+    .info a:hover { text-decoration:underline }
+    footer {
+      margin-top:18px;
+      font-size:13px;
+      color:rgba(255,255,255,0.45);
+      text-align:center;
+    }
+    /* Style untuk area copy dan link */
+    .copy-area {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        background: rgba(11,102,255,0.04);
+        border: 1px solid rgba(255,255,255,0.02);
+        margin-top: 10px;
     }
-    * { box-sizing:border-box }
-    html, body {
-      height:100%; margin:0;
-      background:linear-gradient(180deg,var(--bg),#071022);
-      color:var(--muted);
+    .copy-link {
+        color: var(--accent);
+        font-weight: 700;
+        text-decoration: none;
+        flex-grow: 1;
+        cursor: text; /* Menandakan teks bisa di-select */
     }
-    .container {
-      max-width:980px;
-      margin:36px auto;
-      padding:28px;
+    .copy-btn {
+        background: var(--accent-2);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
     }
-    header {
-      display:flex;
-      align-items:center;
-      gap:18px;
-      margin-bottom:20px;
+    .copy-btn:hover {
+        background: var(--accent);
     }
-    .logo {
-      width:64px; height:64px;
-      border-radius:14px;
-      overflow:hidden;
-      box-shadow:0 6px 18px rgba(11,102,255,0.18);
-      border:2px solid rgba(11,102,255,0.3);
-    }
-    .logo img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:12px;
-    }
-    h1 { margin:0; font-size:20px; color:var(--panel); font-weight:600 }
-    p.lead { margin:0; color:var(--muted); opacity:0.9 }
-    .card {
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border-radius:var(--radius);
-      padding:20px;
-      box-shadow:0 8px 30px rgba(2,6,23,0.6);
-      border:1px solid rgba(255,255,255,0.04);
-    }
-    nav.topnav {
-      display:flex;
-      gap:10px;
-      margin-top:18px;
-    }
-    .tab {
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.06);
-      color:var(--muted);
-      padding:10px 14px;
-      border-radius:10px;
-      cursor:pointer;
-    }
-    .tab.active {
-      background:linear-gradient(90deg, rgba(11,102,255,0.12), rgba(11,75,214,0.08));
-      border-color:rgba(11,102,255,0.38);
-      color:var(--panel);
-      box-shadow:0 6px 24px rgba(11,102,255,0.08);
-    }
-    main {
-      display:grid;
-      grid-template-columns:1fr 360px;
-      gap:18px;
-      margin-top:18px;
-    }
-    form {
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    label {
-      font-size:13px;
-      color:var(--muted);
-    }
-    input, select, textarea {
-      padding:10px;
-      border-radius:8px;
-      border:1px solid rgba(255,255,255,0.06);
-      background:rgba(255,255,255,0.02);
-      color:var(--panel);
-      outline:none;
-    }
-    textarea {
-      min-height:100px;
-      resize:vertical;
-    }
-    .btn {
-      padding:10px 14px;
-      border-radius:10px;
-      border:none;
-      cursor:pointer;
-      font-weight:600;
-    }
-    .btn-primary {
-      background:var(--accent);
-      color:white;
-    }
-    .info {
-      font-size:13px;
-      color:var(--muted);
-      padding:10px;
-      border-radius:8px;
-      background:rgba(11,102,255,0.04);
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .info a {
-      color:var(--accent);
-      font-weight:700;
-      text-decoration:none;
-    }
-    .info a:hover { text-decoration:underline }
-    footer {
-      margin-top:18px;
-      font-size:13px;
-      color:rgba(255,255,255,0.45);
-      text-align:center;
-    }
-    @media (max-width:880px) {
-      main { grid-template-columns:1fr; }
-      .container { padding:16px; }
-    }
-  </style>
+    @media (max-width:880px) {
+      main { grid-template-columns:1fr; }
+      .container { padding:16px; }
+    }
+  </style>
 </head>
 <body>
 <div class="container">
-  <header>
-    <div class="logo">
-      <!-- Ganti logo.png dengan nama file logomu -->
-      <img src="logo.png" alt="Logo SIPAMASE">
-    </div>
-    <div>
-      <h1>SIPAMASE - SISTEM PELAYANAN MANDIRI SERTIFIKAT ELEKTRONIK</h1>
-      <p class="lead">REGISTRASI - PERPANJANGAN - PENCABUTAN</p>
-    </div>
-  </header>
+  <header>
+    <div class="logo">
+            <img src="logo.png" alt="Logo SIPAMASE">
+    </div>
+    <div>
+      <h1>SIPAMASE - SISTEM PELAYANAN MANDIRI SERTIFIKAT ELEKTRONIK</h1>
+      <p class="lead">REGISTRASI - PERPANJANGAN - PENCABUTAN</p>
+    </div>
+  </header>
 
-  <div class="card">
-    <nav class="topnav">
-      <button class="tab active" data-tab="registrasi">Registrasi</button>
-      <button class="tab" data-tab="perpanjangan">Perpanjangan</button>
-      <button class="tab" data-tab="pencabutan">Pencabutan</button>
-    </nav>
+  <div class="card">
+    <nav class="topnav">
+      <button class="tab active" data-tab="registrasi">Registrasi</button>
+      <button class="tab" data-tab="perpanjangan">Perpanjangan</button>
+      <button class="tab" data-tab="pencabutan">Pencabutan</button>
+    </nav>
 
-    <main>
-      <section>
-        <!-- Registrasi -->
-        <div id="registrasi" class="tabpanel">
-          <h2 style="color:var(--panel)">Form Registrasi</h2>
-          <p class="info">MOHON ISI IDENTITAS DIRI DENGAN BENAR</p>
-          <form id="form-registrasi">
-            <label>Nama</label><input id="nama" required>
-            <label>NIP</label><input id="nip" required>
-            <label>NIK</label><input id="nik" required>
-            <label>Nomor Telepon</label><input id="telepon" type="tel" required>
-            <label>Upload Foto (foto formal dengan wajah yang jelas)</label><input type="file" id="foto" accept="image/*">
-            <button class="btn btn-primary" type="submit">Kirim Registrasi</button>
-          </form>
-        </div>
+    <main>
+      <section>
+                <div id="registrasi" class="tabpanel">
+          <h2 style="color:var(--panel)">Form Registrasi</h2>
+          <p class="info">MOHON ISI IDENTITAS DIRI DENGAN BENAR</p>
+          <form id="form-registrasi">
+            <label>Nama</label><input id="reg-nama" required>
+            <label>NIP</label><input id="reg-nip" required>
+            <label>NIK</label><input id="reg-nik" required>
+            <label>Nomor Telepon</label><input id="reg-telepon" type="tel" required>
+            <label>Upload Foto (foto formal dengan wajah yang jelas)</label><input type="file" id="reg-foto" accept="image/*">
+            <button class="btn btn-primary" type="submit">Kirim Registrasi</button>
+          </form>
+        </div>
 
-        <!-- Perpanjangan -->
-        <div id="perpanjangan" class="tabpanel" style="display:none">
-          <h2 style="color:var(--panel)">Form Perpanjangan</h2>
-          <form id="form-perpanjangan">
-            <label>Nama</label><input id="nama" required>
-            <label>NIP</label><input id="nip" required>
-            <label>NIK</label><input id="nik" required>
-            <button class="btn btn-primary" type="submit">Ajukan Perpanjangan</button>
-          </form>
-        </div>
+                <div id="perpanjangan" class="tabpanel" style="display:none">
+          <h2 style="color:var(--panel)">Form Perpanjangan</h2>
+          <form id="form-perpanjangan">
+            <label>Nama</label><input id="per-nama" required>
+            <label>NIP</label><input id="per-nip" required>
+            <label>NIK</label><input id="per-nik" required>
+            <button class="btn btn-primary" type="submit">Ajukan Perpanjangan</button>
+          </form>
+        </div>
 
-        <!-- Pencabutan -->
-        <div id="pencabutan" class="tabpanel" style="display:none">
-          <h2 style="color:var(--panel)">Form Pencabutan</h2>
-          <form id="form-pencabutan">
-            <label>Nama</label><input id="nama" required>
-            <label>NIP</label><input id="nip" required>
-            <label>NIK</label><input id="nik" required>
-            <label>Alasan Pencabutan</label><textarea id="alasan" required></textarea>
-            <button class="btn btn-primary" type="submit">Ajukan Pencabutan</button>
-          </form>
-        </div>
-      </section>
+                <div id="pencabutan" class="tabpanel" style="display:none">
+          <h2 style="color:var(--panel)">Form Pencabutan</h2>
+          <form id="form-pencabutan">
+            <label>Nama</label><input id="cab-nama" required>
+            <label>NIP</label><input id="cab-nip" required>
+            <label>NIK</label><input id="cab-nik" required>
+            <label>Alasan Pencabutan</label><textarea id="cab-alasan" required></textarea>
+            <button class="btn btn-primary" type="submit">Ajukan Pencabutan</button>
+          </form>
+        </div>
+      </section>
 
-      <aside>
-        <div class="card">
-          <h3 style="color:var(--panel)">HARAP DIPERHATIKAN</h3>
-          <p>Klik link nomor dibawah ini ketika sudah selesai mendaftar</p>
-          <p class="info"><a class="wa-link" href="https://wa.me/6285221227100?text=Halo%20Saya%20telah%20selesai%20mendaftar%20di%20SIPAMASE" target="_blank" rel="noopener noreferrer" aria-label="Verifikasi via WhatsApp ke 085221227100">0852-2122-7100 (WhatsApp)</a></p>
-        </div>
-      </aside>
-    </main>
+      <aside>
+        <div class="card">
+          <h3 style="color:var(--panel)">HARAP DIPERHATIKAN</h3>
+          <p>Klik **link** atau **salin nomor** di bawah ini ketika sudah selesai mendaftar untuk verifikasi.</p>
+          
+                    <p class="info">
+            <a class="wa-link" href="https://wa.me/6285221227100?text=Halo%20Saya%20telah%20selesai%20mendaftar%20di%20SIPAMASE" target="_blank" rel="noopener noreferrer">Verifikasi via WhatsApp</a>
+          </p>
+          
+                    <div class="copy-area">
+            <span id="wa-number" class="copy-link">0852-2122-7100</span>
+            <button class="copy-btn" onclick="copyNumber()">Salin</button>
+          </div>
 
-    <footer>© Sistem Layanan - Demo Terhubung Spreadsheet</footer>
-  </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>© Sistem Layanan - Demo Terhubung Spreadsheet</footer>
+  </div>
 </div>
 
 <script>
-  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzgseWmoZv_qbQuI-0fV6vWSwdMUTqsL9qnjeN7KF2kG8nsZCEVcmghMY1P4G_ZovIJ/exec";
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzgseWmoZv_qbQuI-0fV6vWSwdMUTqsL9qnjeN7KF2kG8nsZCEVcmghMY1P4G_ZovIJ/exec";
 
-  async function sendToSheet(data) {
-    try {
-      await fetch(SHEET_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-      alert("✅ Data berhasil dikirim!");
-    } catch (err) {
-      alert("❌ Gagal mengirim data!");
-      console.error(err);
-    }
-  }
+  // Fungsi untuk menyalin nomor WhatsApp
+  function copyNumber() {
+    const numberText = document.getElementById("wa-number").textContent.replace(/-/g, ""); // Hilangkan strip
+    navigator.clipboard.writeText(numberText).then(() => {
+      alert("Nomor WhatsApp berhasil disalin!");
+    }).catch(err => {
+      console.error('Gagal menyalin: ', err);
+      alert("Gagal menyalin nomor. Silakan salin secara manual.");
+    });
+  }
 
-  const tabs = document.querySelectorAll('.tab');
-  const panels = document.querySelectorAll('.tabpanel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      panels.forEach(p => p.style.display = p.id === tab.dataset.tab ? 'block' : 'none');
-    });
-  });
+  async function sendToSheet(data) {
+    try {
+      // Kirim data
+      await fetch(SHEET_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      alert("✅ Data berhasil dikirim!");
+    } catch (err) {
+      alert("❌ Gagal mengirim data!");
+      console.error(err);
+    }
+  }
 
-  document.getElementById("form-registrasi").addEventListener("submit", async e => {
-    e.preventDefault();
-    const fotoInput = document.getElementById("foto");
-    let fotoBase64 = "";
-    if (fotoInput.files[0]) {
-      fotoBase64 = await toBase64(fotoInput.files[0]);
-    }
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tabpanel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      panels.forEach(p => p.style.display = p.id === tab.dataset.tab ? 'block' : 'none');
+    });
+  });
 
-    const data = {
-      jenis: "Registrasi",
-      nama: document.getElementById("nama").value,
-      nip: document.getElementById("nip").value,
-      nik: document.getElementById("nik").value,
-      telepon: document.getElementById("telepon").value,
-      foto: fotoBase64
-    };
-    sendToSheet(data);
-    e.target.reset();
-  });
+  // LOGIKA FORM REGISTRASI
+  document.getElementById("form-registrasi").addEventListener("submit", async e => {
+    e.preventDefault();
+    const fotoInput = document.getElementById("reg-foto");
+    let fotoBase64 = "";
+    if (fotoInput.files[0]) {
+      fotoBase64 = await toBase64(fotoInput.files[0]);
+    }
 
-  document.getElementById("form-perpanjangan").addEventListener("submit", e => {
-    e.preventDefault();
-    const data = {
-      jenis: "Perpanjangan",
-      tanggal: document.getElementById("tgl-exp").value,
-      dokumen: document.getElementById("dok").value
-    };
-    sendToSheet(data);
-    e.target.reset();
-  });
+    const data = {
+      // Kolom B
+      jenis: "Registrasi", 
+      // Kolom C, D, E, F, G
+      nama: document.getElementById("reg-nama").value,
+      nip: document.getElementById("reg-nip").value,
+      nik: document.getElementById("reg-nik").value,
+      'Nomor Telepon': document.getElementById("reg-telepon").value,
+      'Foto': fotoBase64,
+      // Kosongkan H
+      'Alasan Pencabutan': '' 
+    };
+    sendToSheet(data);
+    e.target.reset();
+  });
 
-  document.getElementById("form-pencabutan").addEventListener("submit", e => {
-    e.preventDefault();
-    const data = {
-      jenis: "Pencabutan",
-      nama: document.getElementById("nama").value,
-      nip: document.getElementById("nip").value,
-      nik: document.getElementById("nik").value,
-      alasan: document.getElementById("alasan").value
-    };
-    sendToSheet(data);
-    e.target.reset();
-  });
+  // LOGIKA FORM PERPANJANGAN
+  document.getElementById("form-perpanjangan").addEventListener("submit", e => {
+    e.preventDefault();
+    const data = {
+      // Kolom B
+      jenis: "Perpanjangan",
+      // Kolom C, D, E
+      nama: document.getElementById("per-nama").value,
+      nip: document.getElementById("per-nip").value,
+      nik: document.getElementById("per-nik").value,
+      // Kosongkan F, G, H
+      'Nomor Telepon': '', 
+      'Foto': '',
+      'Alasan Pencabutan': ''
+    };
+    sendToSheet(data);
+    e.target.reset();
+  });
 
-  function toBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  }
+  // LOGIKA FORM PENCABUTAN
+  document.getElementById("form-pencabutan").addEventListener("submit", e => {
+    e.preventDefault();
+    const data = {
+      // Kolom B
+      jenis: "Pencabutan",
+      // Kolom C, D, E
+      nama: document.getElementById("cab-nama").value,
+      nip: document.getElementById("cab-nip").value,
+      nik: document.getElementById("cab-nik").value,
+      // Kosongkan F, G
+      'Nomor Telepon': '', 
+      'Foto': '',
+      // Kolom H
+      'Alasan Pencabutan': document.getElementById("cab-alasan").value 
+    };
+    sendToSheet(data);
+    e.target.reset();
+  });
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
 </script>
 </body>
 </html>
-
-
-
-
-
-
