@@ -187,7 +187,6 @@
 						<label>Nama</label><input id="cab-nama" required>
 						<label>NIP</label><input id="cab-nip" required>
 						<label>NIK</label><input id="cab-nik" required>
-						<label>Alasan Pencabutan</label><textarea id="cab-alasan" required></textarea>
 						<button class="btn btn-primary" type="submit">Ajukan Pencabutan</button>
 					</form>
 				</div>
@@ -282,8 +281,7 @@
 			jenis: "Pencabutan",
 			nama: document.getElementById("cab-nama").value,
 			nip: document.getElementById("cab-nip").value,
-			nik: document.getElementById("cab-nik").value,
-			alasan: document.getElementById("cab-alasan").value
+			nik: document.getElementById("cab-nik").value
 		};
 		sendToSheet(data);
 		e.target.reset();
@@ -300,3 +298,4 @@
 </script>
 </body>
 </html>
+
