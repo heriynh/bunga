@@ -176,8 +176,8 @@
         <div id="perpanjangan" class="tabpanel" style="display:none">
           <h2 style="color:var(--panel)">Form Perpanjangan</h2>
           <form id="form-perpanjangan">
-            <label>Tanggal Perpanjangan</label><input id="tgl-exp" type="date" required>
-            <label>NIK</label><input id="dok" placeholder="NOMOR NIK">
+            <label>NIP</label><input id="nip" required>
+            <label>NIK</label><input id="nik" required>
             <button class="btn btn-primary" type="submit">Ajukan Perpanjangan</button>
           </form>
         </div>
@@ -219,7 +219,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       });
-      alert("✅ Data berhasil dikirim ke Google Spreadsheet!");
+      alert("✅ Data berhasil dikirim!");
     } catch (err) {
       alert("❌ Gagal mengirim data!");
       console.error(err);
@@ -291,6 +291,7 @@
 </script>
 </body>
 </html>
+
 
 
 
